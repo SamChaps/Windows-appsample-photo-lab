@@ -31,12 +31,23 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
+#if WINAPPSDK
+using Microsoft.UI;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
+#else
+using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-
+#endif
 namespace PhotoLab
 {
     public sealed partial class DetailPage : Page
@@ -91,11 +102,30 @@ namespace PhotoLab
 
             if (this.Frame.CanGoBack)
             {
+#if WINAPPSDK
+                // TODO UA307 Default back button in the title bar does not exist in WinUI3 apps.
+                // The tool has generated a custom back button in the MainWindow.xaml.cs file.
+                // Feel free to edit its position, behavior and use the custom back button instead.
+                // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/case-study-1#restoring-back-button-functionality
+
+                PhotoLabWASDK.App.Window.BackButton.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
+#else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+#endif
             }
             else
             {
+#if WINAPPSDK
+                // TODO UA307 Default back button in the title bar does not exist in WinUI3 apps.
+                // The tool has generated a custom back button in the MainWindow.xaml.cs file.
+                // Feel free to edit its position, behavior and use the custom back button instead.
+                // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/case-study-1#restoring-back-button-functionality
+
+                PhotoLabWASDK.App.Window.BackButton.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+
+#else
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+#endif
             }
 
             base.OnNavigatedTo(e);
@@ -141,7 +171,14 @@ namespace PhotoLab
                 PrimaryButtonText = "Leave this page",
                 SecondaryButtonText = "Stay"
             };
+
+#if WINAPPSDK
+            // TODO You should replace 'this' with the instance of UserControl that is ContentDialog is meant to be a part of.
+            ContentDialogResult result = await SetContentDialogRoot(saveDialog, this).ShowAsync();
+#else
             ContentDialogResult result = await saveDialog.ShowAsync();
+#endif
+
             if (result == ContentDialogResult.Primary)
             {
                 // The user decided to leave the page. Restart
@@ -150,6 +187,15 @@ namespace PhotoLab
                 ResetEffects();
                 Frame.Navigate(e.SourcePageType, e.Parameter);
             }
+        }
+
+        private static ContentDialog SetContentDialogRoot(ContentDialog contentDialog, UserControl control)
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 8))
+            {
+                contentDialog.XamlRoot = control.Content.XamlRoot;
+            }
+            return contentDialog;
         }
 
         private void ZoomSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -207,18 +253,27 @@ namespace PhotoLab
 
                     using (CanvasDrawingSession ds = offscreen.CreateDrawingSession())
                     {
-                        ds.Clear(Windows.UI.Colors.Black);
+                        ds.Clear(Colors.Black);
 
                         var img = ImageEffectsBrush.Image;
                         ds.DrawImage(img);
                     }
 
+#if WINAPPSDK
+                    // TODO You should replace 'App.WindowHandle' with the your window's handle (HWND) 
+                    // Read more on retrieving window handle here: https://docs.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
+                    var fileSavePicker = InitializeWithWindow(new FileSavePicker()
+                        {
+                            SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                            SuggestedSaveFile = item.ImageFile
+                        }, PhotoLabWASDK.App.WindowHandle);
+#else
                     var fileSavePicker = new FileSavePicker()
                     {
                         SuggestedStartLocation = PickerLocationId.PicturesLibrary,
                         SuggestedSaveFile = item.ImageFile
                     };
-
+#endif
                     fileSavePicker.FileTypeChoices.Add("JPEG files", new List<string>() { ".jpg" });
 
                     var outputFile = await fileSavePicker.PickSaveFileAsync();
@@ -256,6 +311,14 @@ namespace PhotoLab
                 }
             }
         }
+
+#if WINAPPSDK
+        private static FileSavePicker InitializeWithWindow(FileSavePicker obj, IntPtr windowHandle)
+        {
+            WinRT.Interop.InitializeWithWindow.Initialize(obj, windowHandle);
+            return obj;
+        }
+#endif
 
         private async Task LoadSavedImageAsync(StorageFile imageFile, bool replaceImage)
         {
@@ -312,7 +375,7 @@ namespace PhotoLab
             item.Saturation = 1;
         }
 
-        private void SmallImage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void SmallImage_Loaded(object sender, RoutedEventArgs e)
         {
             SmallImage.Source = ImageSource;
         }

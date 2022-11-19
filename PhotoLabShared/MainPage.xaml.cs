@@ -30,14 +30,18 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.Search;
-using Windows.Storage.Streams;
-using Windows.System.Profile;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
+#if WINAPPSDK
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
+#else
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+#endif
 
 namespace PhotoLab
 {
@@ -64,8 +68,17 @@ namespace PhotoLab
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                AppViewBackButtonVisibility.Collapsed;
+
+#if WINAPPSDK
+            // TODO UA307 Default back button in the title bar does not exist in WinUI3 apps.
+            // The tool has generated a custom back button in the MainWindow.xaml.cs file.
+            // Feel free to edit its position, behavior and use the custom back button instead.
+            // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/case-study-1#restoring-back-button-functionality
+
+            PhotoLabWASDK.App.Window.BackButton.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+#else
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+#endif
 
             if (Images.Count == 0)
             {
@@ -141,9 +154,25 @@ namespace PhotoLab
                     CloseButtonText = "Ok"
                 };
 
+#if WINAPPSDK
+                // TODO You should replace 'this' with the instance of UserControl that is ContentDialog is meant to be a part of.
+                ContentDialogResult resultNotUsed = await SetContentDialogRoot(unsupportedFilesDialog, this).ShowAsync();
+#else
                 ContentDialogResult resultNotUsed = await unsupportedFilesDialog.ShowAsync();
+#endif
             }
         }
+
+#if WINAPPSDK
+        private static ContentDialog SetContentDialogRoot(ContentDialog contentDialog, UserControl control)
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 8))
+            {
+                contentDialog.XamlRoot = control.Content.XamlRoot;
+            }
+            return contentDialog;
+        }
+#endif
 
         public async static Task<ImageFileInfo> LoadImageInfo(StorageFile file)
         {

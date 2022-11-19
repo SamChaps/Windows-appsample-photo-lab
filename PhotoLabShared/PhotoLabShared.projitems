@@ -9,16 +9,6 @@
     <Import_RootNamespace>PhotoLabShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)DetailPage.xaml.cs">
-      <DependentUpon>DetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ImageFileInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LoadedImageBrush.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -27,5 +17,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CompilerFlags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ImageFileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoadedImageBrush.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\1.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\10.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\11.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\12.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\13.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\14.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\15.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\16.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\17.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\18.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\19.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\20.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\3.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\4.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\5.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\6.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\7.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\8.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Samples\9.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
 </Project>

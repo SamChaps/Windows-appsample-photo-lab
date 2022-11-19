@@ -29,7 +29,11 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
+#if WINAPPSDK
+using Microsoft.UI.Xaml.Media.Imaging;
+#else
 using Windows.UI.Xaml.Media.Imaging;
+#endif
 
 namespace PhotoLab
 {

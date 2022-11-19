@@ -1,16 +1,15 @@
 ﻿using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Effects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Graphics.Effects;
+#if WINAPPSDK
+using Microsoft.UI.Composition;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+#else
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+#endif
 using Windows.Storage.Streams;
 
 namespace PhotoLab
@@ -180,7 +179,12 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
 
         public void LoadImageFromPath(string path)
         {
+#if WINAPPSDK
+            var compositor = PhotoLabWASDK.App.Window.Compositor;
+#else
             var compositor = Window.Current.Compositor;
+#endif
+
             // Load image
             _surface = LoadedImageSurface.StartLoadFromUri(new Uri(path));
             _surface.LoadCompleted += Load_Completed;
@@ -190,7 +194,11 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
         {
             if (stream != null && IsImageLoading == false)
             {
+#if WINAPPSDK
+                var compositor = PhotoLabWASDK.App.Window.Compositor;
+#else
                 var compositor = Window.Current.Compositor;
+#endif
                 // Load image
                 IsImageLoading = true;
                 _surface = LoadedImageSurface.StartLoadFromStream(stream);       
@@ -204,7 +212,11 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
 
             if (e.Status == LoadedImageSourceLoadStatus.Success)
             {
+#if WINAPPSDK
+                var compositor = PhotoLabWASDK.App.Window.Compositor;
+#else
                 var compositor = Window.Current.Compositor;
+#endif
                 var brush = compositor.CreateSurfaceBrush(_surface);
                 brush.Stretch = CompositionStretch.UniformToFill;
 
