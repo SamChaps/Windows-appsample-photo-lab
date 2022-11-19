@@ -6,7 +6,7 @@
     <SharedGUID>42357681-0183-4ede-ba12-629490059768</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>PhotoLabShared</Import_RootNamespace>
+    <Import_RootNamespace>PhotoLab</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)DetailPage.xaml">
@@ -19,7 +19,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CompilerFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>

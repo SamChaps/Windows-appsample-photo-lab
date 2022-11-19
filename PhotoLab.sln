@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLabUWP", "PhotoLab\PhotoLabUWP.csproj", "{95D9D016-79D5-451B-856E-C1F20FDAE91F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLabUWP", "PhotoLabUWP\PhotoLabUWP.csproj", "{95D9D016-79D5-451B-856E-C1F20FDAE91F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C7CFA4A-5FEC-4548-8409-99987E643834}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,10 +14,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoLabWASDK", "PhotoLabWASDK\PhotoLabWASDK.csproj", "{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PhotoLabShared", "PhotoLabShared\PhotoLabShared.shproj", "{42357681-0183-4EDE-BA12-629490059768}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PhotoLab", "PhotoLab\PhotoLab.shproj", "{42357681-0183-4EDE-BA12-629490059768}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{4AE5E29A-177D-48D0-A8A1-848B10E6886D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_WinAppSDK|ARM = Debug_WinAppSDK|ARM
+		Debug_WinAppSDK|arm64 = Debug_WinAppSDK|arm64
+		Debug_WinAppSDK|x64 = Debug_WinAppSDK|x64
+		Debug_WinAppSDK|x86 = Debug_WinAppSDK|x86
 		Debug|ARM = Debug|ARM
 		Debug|arm64 = Debug|arm64
 		Debug|x64 = Debug|x64
@@ -28,6 +34,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|ARM.ActiveCfg = Debug_WinAppSDK|ARM
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|ARM.Build.0 = Debug_WinAppSDK|ARM
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|ARM.Deploy.0 = Debug_WinAppSDK|ARM
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|arm64.ActiveCfg = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|arm64.Build.0 = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|arm64.Deploy.0 = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x64.ActiveCfg = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x64.Build.0 = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x64.Deploy.0 = Debug_WinAppSDK|x64
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x86.ActiveCfg = Debug_WinAppSDK|x86
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x86.Build.0 = Debug_WinAppSDK|x86
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug_WinAppSDK|x86.Deploy.0 = Debug_WinAppSDK|x86
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug|ARM.ActiveCfg = Debug|ARM
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug|ARM.Build.0 = Debug|ARM
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -52,6 +70,18 @@ Global
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Release|x86.ActiveCfg = Release|x86
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Release|x86.Build.0 = Release|x86
 		{95D9D016-79D5-451B-856E-C1F20FDAE91F}.Release|x86.Deploy.0 = Release|x86
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|ARM.ActiveCfg = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|ARM.Build.0 = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|ARM.Deploy.0 = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|arm64.ActiveCfg = Debug|arm64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|arm64.Build.0 = Debug|arm64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|arm64.Deploy.0 = Debug|arm64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x64.ActiveCfg = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x64.Build.0 = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x64.Deploy.0 = Debug|x64
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x86.ActiveCfg = Debug|x86
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x86.Build.0 = Debug|x86
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug_WinAppSDK|x86.Deploy.0 = Debug|x86
 		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug|ARM.ActiveCfg = Debug|x64
 		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug|ARM.Build.0 = Debug|x64
 		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965}.Debug|ARM.Deploy.0 = Debug|x64
@@ -80,12 +110,16 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95D9D016-79D5-451B-856E-C1F20FDAE91F} = {4AE5E29A-177D-48D0-A8A1-848B10E6886D}
+		{4F3F51DA-F65E-4627-AFF8-F0275A6D1965} = {4AE5E29A-177D-48D0-A8A1-848B10E6886D}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6223D86-6ED1-4BC3-9E3B-AAFA30BFEE08}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		PhotoLabShared\PhotoLabShared.projitems*{42357681-0183-4ede-ba12-629490059768}*SharedItemsImports = 13
-		PhotoLabShared\PhotoLabShared.projitems*{4f3f51da-f65e-4627-aff8-f0275a6d1965}*SharedItemsImports = 5
-		PhotoLabShared\PhotoLabShared.projitems*{95d9d016-79d5-451b-856e-c1f20fdae91f}*SharedItemsImports = 4
+		PhotoLab\PhotoLab.projitems*{42357681-0183-4ede-ba12-629490059768}*SharedItemsImports = 13
+		PhotoLab\PhotoLab.projitems*{4f3f51da-f65e-4627-aff8-f0275a6d1965}*SharedItemsImports = 5
+		PhotoLab\PhotoLab.projitems*{95d9d016-79d5-451b-856e-c1f20fdae91f}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

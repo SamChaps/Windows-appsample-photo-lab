@@ -180,7 +180,7 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
         public void LoadImageFromPath(string path)
         {
 #if WINAPPSDK
-            var compositor = PhotoLabWASDK.App.Window.Compositor;
+            var compositor = App.Window.Compositor;
 #else
             var compositor = Window.Current.Compositor;
 #endif
@@ -195,7 +195,7 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
             if (stream != null && IsImageLoading == false)
             {
 #if WINAPPSDK
-                var compositor = PhotoLabWASDK.App.Window.Compositor;
+                var compositor = App.Window.Compositor;
 #else
                 var compositor = Window.Current.Compositor;
 #endif
@@ -213,7 +213,7 @@ new PropertyMetadata(0.0, new PropertyChangedCallback(OnTemperatureAmountChanged
             if (e.Status == LoadedImageSourceLoadStatus.Success)
             {
 #if WINAPPSDK
-                var compositor = PhotoLabWASDK.App.Window.Compositor;
+                var compositor = App.Window.Compositor;
 #else
                 var compositor = Window.Current.Compositor;
 #endif

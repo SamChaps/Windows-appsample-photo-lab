@@ -75,7 +75,7 @@ namespace PhotoLab
             // Feel free to edit its position, behavior and use the custom back button instead.
             // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/case-study-1#restoring-back-button-functionality
 
-            PhotoLabWASDK.App.Window.BackButton.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
+            App.Window.BackButton.Visibility = Microsoft.UI.Xaml.Visibility.Collapsed;
 #else
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 #endif
