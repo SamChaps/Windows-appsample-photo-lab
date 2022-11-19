@@ -20,6 +20,8 @@ A sample app that illustrates how to maintain both UWP and WinAppSDK platform wi
 
 ## Solution structure
 
+![image](https://user-images.githubusercontent.com/16784153/202829651-5936d836-d858-484d-8245-f3674022680e.png)
+
 * **Platforms** folder containing both UWP and WinAppSDK application projects.
   * **PhotoLabUWP.csproj** containing UWP app specific code.
   * **PhotoWASDK.csproj** containing WinAppSDK app specific code.
